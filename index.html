@@ -57,8 +57,21 @@ footer{text-align:center;padding:40px;color:var(--soft);font-size:11px} footer .
 
 </style>
 </head>
-<body>
+<!-- kode website kamu yang lain -->
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://mimoableugrioswfwbfu.supabase.co";
+const SUPABASE_KEY = "sb_publishable_oPMaLu4bjKhLnDiOVHfEGA_zWv_zyf5";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+</script>
+
+</body>
+</html>
 <input type="checkbox" id="open">
 
 <main>
