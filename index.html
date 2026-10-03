@@ -174,7 +174,7 @@ const supabaseClient = window.supabase.createClient(
       const message=document.getElementById("message").value.trim();
       if(!name)return;
       const data=getGuests(); data.push({name,attendance,pax,message});
-      const data=getGuests(); data.push({name,attendance,pax,message});
+      
 
 const { error } = await supabaseClient
   .from("guestbook")
