@@ -177,7 +177,7 @@ tick();setInterval(tick,1000);
 
   const form=document.getElementById("rsvpForm");
   if(form){
-    form.addEventListener("submit",function(e){
+    form.addEventListener("submit",async function(e){
       e.preventDefault();
       const name=document.getElementById("guestName").value.trim();
       const attendance=document.querySelector('input[name="attendance"]:checked').value;
@@ -185,7 +185,24 @@ tick();setInterval(tick,1000);
       const message=document.getElementById("message").value.trim();
       if(!name)return;
       const data=getGuests(); data.push({name,attendance,pax,message});
-      try{localStorage.setItem(GUEST_KEY,JSON.stringify(data))}catch(e){}
+      const data=getGuests(); data.push({name,attendance,pax,message});
+
+const { error } = await supabaseClient
+  .from("guestbook")
+  .insert({
+    name: name,
+    attendance: attendance,
+    pax: Number(pax),
+    message: message
+  });
+
+if(error){
+  console.error(error);
+  alert("Gagal menyimpan RSVP. Coba lagi.");
+  return;
+}
+
+renderGuests();
       renderGuests();
       if(attendance==="Hadir"){
         document.getElementById("vipName").textContent=name+" · "+pax+" Pax";
